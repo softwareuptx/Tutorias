@@ -41,23 +41,6 @@
                     <div class="col-lg-12">
                         <div class="card-box">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="contact-card">
-                                        <a class="pull-left" href="#">
-                                            <img class="img-circle" src="<?=base_url('docente/imagen')?>" alt="">
-                                        </a>
-                                        <div class="member-info">
-                                            <h4 class="m-t-0 m-b-5 header-title"><b><code><span class="text-danger"> #<?=user()->idpersonas.'</span></code> / '.user()->nombre.' '.user()->apellidopat.' '.user()->apellidomat?></b></h4>
-                                            <p class="text-muted"><?=user()->email?></p>
-                                            <strong>Alumnos totales:</strong> <span class="badge badge-default"> <?=$num_tutorados?> </span> / <strong>Alumnos criticos:</strong> <span class="badge badge-danger"> <?=$tutorados_reprobados?> </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="btn-group pull-right">
-                                        <button type="button" class="btn btn-default waves-effect waves-light"><i class="fa fa-print"></i> Imprimir lista de alumnos</button>
-                                    </div>
-                                </div>
                             </div>
                             <hr>
                             <div class="row">
@@ -66,11 +49,6 @@
                                      <div class="form-inline m-b-20">
                                         <div class="row">
                                             <div class="col-sm-6 text-xs-center">
-                                                <ul class="list-inline chart-detail-list">
-                                                    <li>
-                                                        <h5><i class="fa fa-circle m-r-5" style="color: #f05050;"></i> Alumno critico</h5>
-                                                    </li>
-                                                </ul>
                                             </div>
                                             <div class="col-sm-6 text-xs-center text-right">
                                                 <div class="form-group">
@@ -103,16 +81,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($tutorados as $key => $tutorado) { ?>
-                                            <tr>
-                                                <td style="display: none;"><?=$tutorado->status?></td>
-                                                <td><strong><?=($key+1)?></strong></td>
-                                                <td><a href="<?=base_url('tutorados/detalles/'.$tutorado->idpersonas)?>" style="color:#fff" data-toggle="tooltip" data-placement="top" data-original-title="Ver detalles del alumno"><span class="label label-<?=$tutorado->label?>"><?=$tutorado->nocuenta?></span></a></td>
-                                                <td><a href="<?=base_url('tutorados/detalles/'.$tutorado->idpersonas)?>" style="text-decoration: underline;color: #797979;"><?=$tutorado->apellidopat.' '.$tutorado->apellidomat.' '.$tutorado->nombre?></a></td>
-                                                <td><?=$tutorado->email?></td>
-                                                <th></th>
-                                            </tr>
-                                            <?php } ?>
+
                                         </tbody>
                                     </table>
 

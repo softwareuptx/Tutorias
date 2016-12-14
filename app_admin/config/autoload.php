@@ -83,7 +83,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url','form','static','poa');
+$autoload['helper'] = array('url','form','static','tutorias');
 
 /*
 | -------------------------------------------------------------------
@@ -126,5 +126,5 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('mlogin','minstituciones','munidades','mcapitulos','mconceptos','mpartidas','mperiodos','mareas','msubareas','mcolaboradores');
+$autoload['model'] = array('mlogin');
 

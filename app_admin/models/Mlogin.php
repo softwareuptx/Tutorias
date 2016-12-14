@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
- * Sistema de Programacion Operativa Anual (POA)
+ * Sistema de Tutorias
  * Modelos / Modelo Login
  *
  * Tareas necesarias para crear el login y logout del sistema
@@ -11,54 +11,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Mlogin extends CI_Model
 {
     /**
-     * Optiene el usuario de la base de datos y crea la sesion
+     * Instancia de base de datos
      *
-     * @param   Int
+     * @var Object
+     */
+    protected $sii;
+
+    /**
+     * Constructor
+     *
+     * @return  void
+     */
+    function __construct(){
+        parent::__construct();
+        //Inicialisamos la base de datos
+        $this->sii = $this->load->database('sii', TRUE);
+        //Inicialisamos modelos
+        $this->load->model('mperiodos');
+        $this->load->model('mdocentes');
+    }
+    // --------------------------------------------------------------------
+
+    /**
+     * Optiene el docente de la base de datos y crea la sesion
+     *
      * @param   Int
      * @param   String
      * @return  void
      */
-    public function login($periodo,$numero,$password)
+    public function login($numero,$password)
     {
-        //Obtenemos el uario de la base de datos local
-        $this->db->select('u_id,u_refsii,u_password,u_admin');
-        $this->db->where('u_refsii', (int)$numero);
-        $this->db->limit(1);
-        $usuario = $this->db->get('Usuarios')->row();
+        if(!$docente=$this->mdocentes->obtener($numero))
+            $this->alerts->danger('login','No. de profesor incorrecto.');
 
-        //Validamos usuario
-        if(!$usuario)
-            $this->alerts->danger('login','Número de SII incorrecto.');
-
-        //Validamos permisos
-        if($usuario->u_admin!=1)
-            $this->alerts->danger('login','Lo sentimos, no tiene permisos para entrar a esta parte del sistema.');
-
-        //Validamos contraseña
-        if ( strcasecmp(md5($password),$usuario->u_password)!=0 )
+        /*//Comparamos contraseña
+        if ( strcasecmp(md5($password),$docente->password)!=0 )
             $this->alerts->danger('login','Contraseña incorrecta.');
+        */
 
-        //Creamos la session de usuario
-        $this->crear_sesion($usuario,$periodo);
+        //Creamos la session de docente
+        $this->crear_sesion($docente,$this->mperiodos->actual()->idperiodo);
     }
     // --------------------------------------------------------------------
-    
-    /**
-     * Optiene un usuario en especifico
-     *
-     * @param   Int
-     * @return  Object
-     */
-    public function getUsuario($usuario_id)
-    {
-        //Obtenemos el uario de la base de datos local
-        $this->db->where('u_id', (int)$usuario_id);
-        $this->db->limit(1);
-        
-        return $this->db->get('Usuarios')->row();
-    }
-    // --------------------------------------------------------------------
-    
+
     /**
      * Crea la sesion en cookies
      *
@@ -66,12 +61,12 @@ class Mlogin extends CI_Model
      * @param   Object
      * @return  void
      */
-    private function crear_sesion($usuario,$periodo)
+    private function crear_sesion($docente,$periodo)
     {
 
         $session_data = array(
             "logged"    => TRUE,
-            "usuario"   => $usuario,
+            "usuario"   => $docente,
             "periodo"   => $periodo,
             );
 
@@ -93,5 +88,5 @@ class Mlogin extends CI_Model
     // --------------------------------------------------------------------
 }
 /* Final del archivo Mlogin.php 
- * Ubicacion: ./app_admin/models/Mlogin.php
+ * Ubicacion: ./app_user/models/Mlogin.php
  */

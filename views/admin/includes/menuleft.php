@@ -5,39 +5,20 @@
         <div id="sidebar-menu">
             <ul>
                 <li class="text-muted menu-title">
-                    <strong><?=User()->u_nombre?></strong>
-                    <p><?=User()->perfil?></p>
-                    <button type="button" class="btn btn-xs btn-<?=User()->periodo->class?> waves-effect waves-light">
-                        <span class="btn-label" style="margin-right: 5px;">
-                            Año <?=User()->periodo->p_anio?>
-                        </span>
-                        <?=User()->periodo->status?>
-                    </button>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <strong><?=User()->nombre?></strong>
+                        </div>
+                        <div class="col-lg-12">
+                            <?=User()->apellidopat.' '.User()->apellidomat?>
+                        </div>
+                    </div>
+                    <p></p>
+                    <span class="label label-success"><?=periodo()->periodo?></span>
                     <hr style="margin-bottom: 0px !important">
                 </li>
                 <li>
-                    <a href="<?=base_url('periodos')?>" class="waves-effect <?=menu('periodos')?>"><i class="fa fa-calendar-check-o"></i> <span>Periodos</span></a>
-                </li>
-                <li>
-                    <a href="<?=base_url('instituciones')?>" class="waves-effect <?=menu('instituciones')?>"><i class="fa fa-institution"></i> <span>Instituciones</span></a>
-                </li>
-                <li>
-                    <a href="<?=base_url('unidades')?>" class="waves-effect <?=menu('unidades')?>"><i class="fa fa-th-large"></i> <span>Unidades</span></a>
-                </li>
-                <li>
-                    <a href="<?=base_url('areas')?>" class="waves-effect <?=menu('areas')?>"><i class="fa fa-arrows-alt"></i> <span>Áreas</span></a>
-                </li>
-                <li>
-                    <a href="<?=base_url('subareas')?>" class="waves-effect <?=menu('subareas')?>"><i class="fa fa-arrows"></i> <span>Subáreas</span></a>
-                </li>
-                <li>
-                    <a href="<?=base_url('capitulos')?>" class="waves-effect <?=menu('capitulos')?>"><i class="fa fa-tags"></i> <span>Capitulos</span></a>
-                </li>
-                <li>
-                    <a href="<?=base_url('conceptos')?>" class="waves-effect <?=menu('conceptos')?>"><i class="fa fa-tag"></i> <span>Conceptos</span></a>
-                </li>
-                <li>
-                    <a href="<?=base_url('partidas')?>" class="waves-effect <?=menu('partidas')?>"><i class="fa fa-flag"></i> <span>Partidas</span></a>
+                    <a href="<?=base_url('tutores')?>" class="waves-effect <?=menu('tutores')?>"><i class="fa fa-calendar-check-o"></i> <span>Tutores</span></a>
                 </li>
             </ul>
             <div class="clearfix"></div>

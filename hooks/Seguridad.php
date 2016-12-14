@@ -31,7 +31,7 @@ class Seguridad
 	// --------------------------------------------------------------------
 
 	/**
-     * Verifica la sesion creadad y las redirecciones
+     * Verifica la sesion creada y las redirecciones
      *
      * @return	void
      */
@@ -49,24 +49,6 @@ class Seguridad
 			redirect();
 		else if(!$this->CI->session->userdata('logged') && !in_array($controller,$controllers))
 			redirect('login');
-	}
-	// --------------------------------------------------------------------
-	
-	/**
-     * Verifica conexion al sii
-     *
-     * @return	void
-     */
-	public function conexion()
-	{
-		//Obtenes la clase a la cual se esta accesando
-		$controller 	= $this->CI->router->class;
-		//Obtenes el metodo la cual se esta accesando
-		$metodo 		= $this->CI->router->method;
-
-
-		if($controller=='errors' && $this->CI->session->error_db)
-			redirect();
 	}
 	// --------------------------------------------------------------------
 }

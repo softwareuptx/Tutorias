@@ -22,7 +22,6 @@ class MTutorados extends CI_Model{
 
     public function getTutorado($idpersonas){
         $this->sii->select('resultado.nocuenta,persona.idpersonas,persona.nombre,persona.apellidopat,persona.apellidomat,persona.email,resultado.idplan_estudios,fechanaci,curp,email,nom_municipio_v,colonia_v,codigopostal_v,callenum');
-        $this->sii->distinct();
         $this->sii->from('tutoria, resultado, parcial, alumno, persona');
         $this->sii->where('resultado.nocuenta=tutoria.alumno_nocuenta');
         $this->sii->where('persona.idpersonas',(int)$idpersonas);
@@ -31,8 +30,6 @@ class MTutorados extends CI_Model{
         $this->sii->where('alumno.idpersonas=persona.idpersonas');
         $this->sii->where('tutoria.fechafin IS NULL');
         $this->sii->where('resultado.idplan_estudios=alumno.idplan_estudios');
-
-        $this->sii->order_by("persona.apellidopat, persona.apellidomat, persona.nombre");
 
         return $this->sii->get()->row();
     }

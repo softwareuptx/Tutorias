@@ -12,10 +12,9 @@
                         <div class="col-lg-12">
                             <?=User()->apellidopat.' '.User()->apellidomat?>
                         </div>
-
                     </div>
                     <p></p>
-                    <span class="label label-<?=User()->periodo->class?>"><?=User()->periodo->periodo?></span>
+                    <span class="label label-success"><?=periodo()->periodo?></span>
                     <hr style="margin-bottom: 0px !important">
                 </li>
                 <li>

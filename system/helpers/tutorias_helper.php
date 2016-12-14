@@ -29,18 +29,6 @@ if ( ! function_exists('user') )
 		{
 			if( $usuario = $CI->mdocentes->obtener( $CI->session->userdata('usuario')->idpersonas ))
 			{	
-				//Obtenemos el periodo selecionado
-				$usuario->periodo = $CI->mperiodos->obtener( $CI->session->userdata('periodo') );
-
-				//Validos la clase de periodo
-				if($usuario->periodo->actual==1)
-				{
-					$usuario->periodo->status 	= 'actual';
-					$usuario->periodo->class 	= 'success';
-				}else{
-					$usuario->periodo->status 	= 'cerrado';
-					$usuario->periodo->class 	= 'danger';
-				}
 
 				$usuario->logged = TRUE;
 
@@ -199,7 +187,7 @@ if ( ! function_exists('title') )
 		//Obtenes el metodo la cual se esta accesando
 		$metodo 		= $CI->router->method;
 
-		$temp = 'POA | ';
+		$temp = 'Tutorias | ';
 
 		if(!$titulo)
 		{	

@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Mlogin extends CI_Model
 {
     /**
-     * Database var
+     * Instancia de base de datos
      *
      * @var Object
      */
@@ -51,9 +51,9 @@ class Mlogin extends CI_Model
 
         //Creamos la session de docente
         $this->crear_sesion($docente,$this->mperiodos->actual()->idperiodo);
-        }
+    }
     // --------------------------------------------------------------------
-    
+
     /**
      * Crea la sesion en cookies
      *

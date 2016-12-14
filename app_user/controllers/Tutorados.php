@@ -10,12 +10,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Tutorados extends CI_Controller
 {
+    /**
+     * Constructor
+     *
+     * @return  void
+     */
     function __construct(){
         parent::__construct();
-        //corremos el modelo
+        //Verificamos conexion al SII
         conexion_sii();
         $this->load->model('mtutorados');
     }
+    // --------------------------------------------------------------------
+    
     /**
      * Lista los tutorados
      *
@@ -23,7 +30,6 @@ class Tutorados extends CI_Controller
      */
     public function index()
     {
-        $this->load->database('sii', TRUE);
 
         //Obtenemos lista de alumnos
         $tutorados = $this->mtutorados->getTutorados(user()->idprofesor);

@@ -2,13 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Sistema de Tutorias
- * Modelos / Modelo periodos
+ * Modelos / Modelo docente
  *
- * Acciones para el modulo periodos
+ * Acciones para el modulo docente
  *
  * @author Oficina de Desarrollo de Software / Universidad Politecnica de Tlaxcala
  */
-class Mperiodos extends CI_Model
+class Mdocentes extends CI_Model
 {   
     /**
      * Database var
@@ -29,29 +29,21 @@ class Mperiodos extends CI_Model
     // --------------------------------------------------------------------
     
     /**
-     * Obtiene un registro en especifico
+     * Optiene un docente en especifico
      *
      * @param   Int
      * @return  Object
      */
-    public function obtener($id)
-    {
-        $this->sii->where('idperiodo',(int)$id);
-        return $this->sii->get('periodo')->row();
-    }
-    // --------------------------------------------------------------------
-    
-    /**
-     * Obtiene el periodo actual
-     *
-     * @return  object
-     */
-    public function actual()
-    {
-        return $this->sii->get_where('periodo',array('actual'=>1))->row();
+    public function obtener($idpersonas){
+
+        $this->sii->select('persona.idpersonas,nombre,apellidopat,apellidomat,imagen,profesor.idprofesor,grado_siglas,email,persona.profesor_activo,imagen');
+        $this->sii->join('profesor','profesor.idpersonas=persona.idpersonas');
+        $this->sii->where('persona.idpersonas',(int)$idpersonas);
+
+        return $this->sii->get('persona')->row();
     }
     // --------------------------------------------------------------------
 }
-/* Final del archivo Mperiodos.php 
- * Ubicacion: ./app_user/models/Mperiodos.php
+/* Final del archivo Mdocentes.php 
+ * Ubicacion: ./app_user/models/Mdocentes.php
  */

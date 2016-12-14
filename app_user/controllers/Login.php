@@ -8,16 +8,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @author Oficina de Desarrollo de Software / Universidad Politecnica de Tlaxcala
  */
-class Login extends CI_Controller {
+class Login extends CI_Controller
+{
 
     /**
      * Constructor
      *
      * @return  void
      */
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
-        //Corremos el modelo
+        //Validamos la conexion al SII
         conexion_sii();
         $this->load->model('mlogin');
         
@@ -25,7 +27,7 @@ class Login extends CI_Controller {
     // --------------------------------------------------------------------
 
     /**
-     * Renderiza vista de login y crea session de usuario
+     * Login
      *
      * @return  void
      */
@@ -34,7 +36,6 @@ class Login extends CI_Controller {
         // Validaciones de Formulario
         $this->form_validation->set_rules('numero', 'No. de profesor', 'required|numeric');
         $this->form_validation->set_rules('password', 'Contraseña', 'required');
-
         if( $this->form_validation->run() && $this->input->post() )
         {
             $numero     = $this->input->post('numero',TRUE);
@@ -43,7 +44,6 @@ class Login extends CI_Controller {
             $this->mlogin->login($numero,$password);
             redirect();
         }
-
         $this->load->view('login');
     }
     // --------------------------------------------------------------------
